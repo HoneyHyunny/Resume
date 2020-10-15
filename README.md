@@ -1,4 +1,4 @@
-# Resume Page
+# WebResume
 
 Hello, I am Hyunse Seo and this web page is explaining my resume.
 
