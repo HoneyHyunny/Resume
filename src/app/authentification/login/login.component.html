@@ -1,5 +1,5 @@
+<div class="container">
 
-<!-- CRUD Form -->
 <div class="h4">
   Login Form
 </div>
@@ -8,43 +8,31 @@
 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
 Loading...
 </button>
-<!-- 
-<form [formGroup]="boardEditForm" *ngIf="!isLoading" (ngSubmit)="onSubmit()">
+
+<form [formGroup]="userLoginForm" *ngIf="!isLoading" (ngSubmit)="onSubmit()">
   <div class="form-group">
 
-      <label for="inputEmail4">Title</label>
+      <label for="email">Email</label>
       <input type="text" 
              class="form-control" 
-             formControlName= "mainTitle" 
-             id="inputEmail4">
+             formControlName= "email" 
+             id="email">
   </div>
+
+  
   <div class="form-group">
-      <label for="inputPassword4">Sub-Title</label>
-      <input type="text" 
-             class="form-control centered" 
-             formControlName="extraTitle" 
-             id="inputPassword4">
-    
-  </div>
-  <div class="form-group">
-    <label for="inputAddress">Date</label>
-    <input type="text" 
+    <label for="password">Password</label>
+    <input type="password" 
            class="form-control" 
-           id="inputAddress" 
-           formControlName= "date" 
-           placeholder="1234 Main St">
-  </div>
-  <div class="form-group">
-    <label for="inputAddress2">Description</label>
-    <input type="textArea" 
-           class="form-control" 
-           id="inputAddress2" 
-           formControlName= "contents" 
-           placeholder="Write the description of this board">
+           id="password" 
+           formControlName= "password">
   </div>
 
   <button type="submit"  class="btn btn-primary">Submit</button>
  
-</form> -->
+</form> 
 
 <!-- CRUD Form End -->
+
+
+</div>

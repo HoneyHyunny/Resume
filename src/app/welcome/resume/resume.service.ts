@@ -5,15 +5,15 @@ import { Subject } from 'rxjs';
 
 //map operators 
 
-import { map } from 'rxjs/operators'
+import { map } from 'rxjs/operators';
 
 //http module
 
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
 
 //model import
-import { Board } from '../../models/board.model'
+import { Board } from '../../models/board.model';
 
 
 
@@ -52,7 +52,8 @@ export class ResumeService {
                     mainTitle : board.mainTitle,
                     extraTitle : board.extraTitle,
                     date : board.date, 
-                    contents : board.contents           
+                    contents : board.contents,
+                    createdBy : board.createdBy          
                  }
                });
              }))
@@ -100,7 +101,7 @@ export class ResumeService {
   //for edit mode, returning id string.
   getSingleBoard(id: string){
     //prevent duplicatation of original. 
-    return this.http.get<{_id: string, mainTitle: string, extraTitle: string, date: string, contents : string}>
+    return this.http.get<{_id: string, mainTitle: string, extraTitle: string, date: string, contents : string, createdBy: string}>
                         (this.addr + '/' + id)
   }
 

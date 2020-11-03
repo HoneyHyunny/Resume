@@ -89,7 +89,7 @@
   
           </div>
   
-          <small class="d-block text-right mt-4 " role="button">
+          <small class="d-block text-right mt-4 "  *ngIf="isUserAuthenticated && userId === board.createdBy" role="button">
            
               <a type="button" class="btn btn-outline-info" [routerLink]="['/edit', board.id]" >Edit</a>
             <!-- button click event for deleting board. -->

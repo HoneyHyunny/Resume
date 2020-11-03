@@ -3,6 +3,7 @@ export interface Board{
         mainTitle : string,
         extraTitle : string,
         date : string, 
-        contents : string
+        contents : string,
+        createdBy : string        
 
 }

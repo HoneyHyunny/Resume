@@ -46,10 +46,17 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     // reactive form init
     this.boardEditForm = new FormGroup({
-      mainTitle : new FormControl(''), 
-      extraTitle : new FormControl(''),
-      date : new FormControl(''),
-      contents : new FormControl('')
+      mainTitle : new FormControl(null, {
+        validators : [Validators.required, Validators.minLength(3)]
+      }), 
+      extraTitle : new FormControl(null, {
+        validators : [Validators.required, Validators.minLength(3)]
+      }),
+      date : new FormControl(null, {validators : [Validators.required, Validators.minLength(3)]
+      }),
+      contents : new FormControl(null, {validators : [Validators.required, Validators.minLength(3)]
+      }),
+
     });
 
     //for editmode
@@ -70,7 +77,8 @@ export class EditComponent implements OnInit {
             mainTitle : paramBoard.mainTitle,
             extraTitle : paramBoard.extraTitle,
             date : paramBoard.date,
-            contents : paramBoard.contents
+            contents : paramBoard.contents,
+            createdBy : paramBoard.createdBy
           }
           
           this.boardEditForm.setValue({
@@ -94,8 +102,6 @@ export class EditComponent implements OnInit {
   onSubmit(){
     //javascript method . form submit후 refresh를 방지한다
     // e.preventDefault();
- 
-     
     if(this.mode === "create"){
     //new Post creation
     this.board = {
@@ -103,7 +109,8 @@ export class EditComponent implements OnInit {
       mainTitle : this.boardEditForm.value.mainTitle,
       extraTitle : this.boardEditForm.value.extraTitle,
       date : this.boardEditForm.value.date,
-      contents : this.boardEditForm.value.contents
+      contents : this.boardEditForm.value.contents,
+      createdBy : null
     }
   
     this.resumeService.addBoard(this.board);
@@ -115,7 +122,8 @@ export class EditComponent implements OnInit {
         mainTitle : this.boardEditForm.value.mainTitle,
         extraTitle : this.boardEditForm.value.extraTitle,
         date : this.boardEditForm.value.date,
-        contents : this.boardEditForm.value.contents
+        contents : this.boardEditForm.value.contents,
+        createdBy : null
       }
 
       this.resumeService.updateBoard(

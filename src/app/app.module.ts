@@ -6,7 +6,7 @@ import { NgModule } from '@angular/core';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms'
 
 //http 
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { AppComponent } from './app.component';
 import { ResumeComponent } from './welcome/resume/resume.component';
@@ -17,7 +17,13 @@ import { EditComponent } from './welcome/resume/edit/edit.component'
 
 //Routing Module
 import { AppRoutingModule } from './app-routing.module';
+import { SignupComponent } from './authentification/signup/signup.component';
+import { AuthInterceptor } from './authentification/auth-interceptor';
+import { ErrorComponent } from './error/error.component';
+import { ErrorInterceptor } from './error/error-interceptor';
 
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -26,7 +32,9 @@ import { AppRoutingModule } from './app-routing.module';
     HeaderComponent,
     AuthentificationComponent,
     LoginComponent,
-    EditComponent
+    EditComponent,
+    SignupComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -35,8 +43,15 @@ import { AppRoutingModule } from './app-routing.module';
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatDialogModule,
+    MatButtonModule
+
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi:true}
+  ],
+  bootstrap: [AppComponent],
+  entryComponents: [ErrorComponent]
 })
 export class AppModule { }

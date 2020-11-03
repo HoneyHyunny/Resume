@@ -17,9 +17,23 @@
         </li>
 
       </ul>
+
+ 
       <div class="inline my-2 my-lg-0">
-       
-        <a class="nav-link my-2 my-sm-0" type="submit">Authentification</a>
+
+         <div class="nav-item dropdown" *ngIf="!isUserAuthenticated">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Authentification
+          </a>
+        
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" routerLink="/login" href="#">Login</a>
+            <a class="dropdown-item" routerLink="/signup" href="#">SignUp</a>
+          </div>
+        </div>
+
+        <a class="nav-link my-2 my-sm-0" *ngIf="isUserAuthenticated" (click)="onLogout()" type="button">Logout</a>
+  
       </div>
     </div>
 
