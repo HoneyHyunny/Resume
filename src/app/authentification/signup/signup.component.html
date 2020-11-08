@@ -1,0 +1,42 @@
+
+<!-- CRUD Form -->
+<div class="h4">
+    Signup Form
+  </div>
+  
+  <button class="btn btn-primary" *ngIf="isLoading" type="button" disabled>
+  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  Loading...
+  </button>
+  
+  <form [formGroup]="userSignupForm" *ngIf="!isLoading" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+  
+        <label for="email">Email</label>
+        <input type="email" 
+               class="form-control" 
+               formControlName= "email" 
+               id="email">
+    </div>
+    <div class="form-group">
+        <label for="username"></label>
+        <input type="text" 
+               class="form-control centered" 
+               formControlName="username" 
+               id="username">
+      
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" 
+             class="form-control" 
+             id="password" 
+             formControlName= "password">
+    </div>
+  
+    <button type="submit"  class="btn btn-primary">Submit</button>
+   
+  </form> 
+  
+  <!-- signUp Form End -->
