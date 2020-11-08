@@ -15,7 +15,11 @@ import { Router } from '@angular/router';
 //model import
 import { Board } from '../../models/board.model';
 
+//envrionment var
+import { environment } from '../../../environments/environment'
 
+//common http addr
+const addr = environment.localURL + "/resume/boards";
 
 
 @Injectable({
@@ -28,8 +32,7 @@ export class ResumeService {
   //subject 
   private updatedBoards = new Subject<Board[]>();
 
-  //common http addr
-  private addr : string = 'http://localhost:3000/resume/boards';
+  
 
   constructor(private http : HttpClient, private router : Router) {
 
@@ -44,7 +47,7 @@ export class ResumeService {
 
   //get all boards list when client access to the homepage. 
   getBoards(){
-    this.http.get<{message: string, body: any}>(this.addr)
+    this.http.get<{message: string, body: any}>(addr)
              .pipe(map((result)=>{
                return result.body.map(board =>{
                  return{
@@ -74,7 +77,7 @@ export class ResumeService {
     // db 정보를 저장한뒤 성공적으로 저장하게 되면 리턴값은 몽고디비에 저장된 id 값만을 가지고 온다. 
     // 따라서 많은 양의 데이터가 필요없고 우리는 프론트엔드 로컬에서만 존재하는 board에 서버로부터 가지고 온 id값만을 더하여 로컬에서 사용하게 함. 
 
-    this.http.post<{message : string, boardId : string}>(this.addr, board)  
+    this.http.post<{message : string, boardId : string}>(addr, board)  
              .subscribe((res)=>{
                 
                 console.log(res);
@@ -87,8 +90,8 @@ export class ResumeService {
   }
 
   deleteBoard(id : string){
-    console.log(this.addr + '/' + id);
-    this.http.delete<{message : string}>(this.addr + '/' + id)
+    console.log(addr + '/' + id);
+    this.http.delete<{message : string}>(addr + '/' + id)
              .subscribe(()=>{
 
                const afterDeleteBoards = this.boards.filter(board => board.id !== id);
@@ -102,11 +105,11 @@ export class ResumeService {
   getSingleBoard(id: string){
     //prevent duplicatation of original. 
     return this.http.get<{_id: string, mainTitle: string, extraTitle: string, date: string, contents : string, createdBy: string}>
-                        (this.addr + '/' + id)
+                        (addr + '/' + id)
   }
 
   updateBoard(id : string, board : Board){
-    this.http.put(this.addr + "/" + id, board)
+    this.http.put(addr + "/" + id, board)
              .subscribe(editResponse =>{
                //edit 성공후 리스폰스가 오면 그뒤 보드 업데이트. 
                const updatedBoards = [...this.boards];

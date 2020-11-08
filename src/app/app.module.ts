@@ -9,31 +9,19 @@ import {ReactiveFormsModule, FormsModule} from '@angular/forms'
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { AppComponent } from './app.component';
-import { ResumeComponent } from './welcome/resume/resume.component';
-import { HeaderComponent } from './welcome/header/header.component';
-import { AuthentificationComponent } from './authentification/authentification.component';
-import { LoginComponent } from './authentification/login/login.component';
-import { EditComponent } from './welcome/resume/edit/edit.component'
-
+import { ErrorComponent } from './error/error.component';
+import { HeaderComponent } from './welcome/header/header.component'
 //Routing Module
 import { AppRoutingModule } from './app-routing.module';
-import { SignupComponent } from './authentification/signup/signup.component';
 import { AuthInterceptor } from './authentification/auth-interceptor';
-import { ErrorComponent } from './error/error.component';
-import { ErrorInterceptor } from './error/error-interceptor';
 
-import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
+import { ErrorInterceptor } from './error/error-interceptor';
+import { ResumeModule } from './welcome/resume/resume.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ResumeComponent,
     HeaderComponent,
-    AuthentificationComponent,
-    LoginComponent,
-    EditComponent,
-    SignupComponent,
     ErrorComponent
   ],
   imports: [
@@ -43,8 +31,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatDialogModule,
-    MatButtonModule
+    ResumeModule
 
   ],
   providers: [

@@ -4,13 +4,16 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user.model';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment'
+const httpAddr = environment.localURL +"/user";
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthentificationService {
   //global constant for addr
-  private httpAddr : string = "http://localhost:3000/user";
+
   //server로 부터 리턴받을 토큰
   private token : string;
 
@@ -54,7 +57,7 @@ export class AuthentificationService {
 
     const user  = newUser; 
 
-    this.http.post(this.httpAddr + "/signup", user)
+    this.http.post(httpAddr + "/signup", user)
              .subscribe(response =>{
                console.log(response);
              })
@@ -65,7 +68,7 @@ export class AuthentificationService {
   login(existUSer : User){
     const user = existUSer; 
     // < generics, value from res by server >
-    this.http.post<{token: string, expiresIn: number, userId: string }>(this.httpAddr + "/login", user)
+    this.http.post<{token: string, expiresIn: number, userId: string }>(httpAddr + "/login", user)
              .subscribe(response =>{
                const token = response.token;
                this.token = token;

@@ -19,7 +19,7 @@ const userRoutes = require('./routes/user');
 
 
 mongoose.connect(
-    "mongodb+srv://projectStakeholder:OjjuvHW1Zag8Ae3W@resumeprojectcluster.oekdh.mongodb.net/resume-project?retryWrites=true&w=majority"
+    "mongodb+srv://projectStakeholder:" + process.env.MONGO_ATLAS_PW + "@resumeprojectcluster.oekdh.mongodb.net/resume-project?retryWrites=true&w=majority"
     )
     .then(()=>{
         console.log("mongodb connected with server successfully!");
@@ -31,12 +31,6 @@ mongoose.connect(
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : false}));
 
-
-
-// response.setHeader("Access-Control-Allow-Origin", "*");
-// response.setHeader("Access-Control-Allow-Credentials", "true");
-// response.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-// response.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
 
 
 //set headers 
