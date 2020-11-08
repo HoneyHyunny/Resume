@@ -1,13 +1,11 @@
 // express server use 
+const path = require("path");
 
-//import
 const express = require('express');
 
 //middleware 
 const bodyParser = require('body-parser');
 
-//instance
-const app = express();
 
 //mongo db connect 
 const mongoose = require('mongoose');
@@ -16,6 +14,10 @@ const mongoose = require('mongoose');
 const boardRoutes = require('./routes/board');
 //user routings 
 const userRoutes = require('./routes/user');
+
+
+//instance
+const app = express();
 
 
 mongoose.connect(
@@ -30,6 +32,8 @@ mongoose.connect(
 //body parser    
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : false}));
+//절대경로로 / req 오면 angualr 폴더에 있는 내용을 연다. 
+app.use("/". express.static(path.join(__dirname, "angular")))
 
 
 
@@ -53,6 +57,9 @@ app.use((req, res, next)=>{
 app.use("/resume/boards", boardRoutes);
 app.use("/user", userRoutes);
 
+app.use((req, res, next) =>{
+    res.sendFile(path.join(__dirname, "angular", "index.html"));
+})
 
 //export express module
 

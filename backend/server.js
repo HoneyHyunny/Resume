@@ -2,7 +2,7 @@ const http = require('http');
 
 const debug = require("debug")("node-angular");
 // express module import
-const app  = require('./backend/app');
+const app  = require('./app');
 
 
 

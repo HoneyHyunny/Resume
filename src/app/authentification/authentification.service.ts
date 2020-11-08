@@ -4,8 +4,14 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user.model';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
-import { environment } from '../../environments/environment'
-const httpAddr = environment.localURL +"/user";
+// import { environment } from '../../environments/environment'
+
+
+import {environment} from '../../environments/environment.prod'
+
+
+
+const httpAddr = environment.globalUrl +"/user";
 
 
 @Injectable({
