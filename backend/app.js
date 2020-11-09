@@ -33,7 +33,7 @@ mongoose.connect(
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : false}));
 //절대경로로 / req 오면 angualr 폴더에 있는 내용을 연다. 
-app.use("/". express.static(path.join(__dirname, "angular")))
+app.use("/", express.static(path.join(__dirname, "angular")))
 
 
 
