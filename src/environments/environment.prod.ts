@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  globalUrl : "https://mean-resume.herokuapp.com/"
+  globalUrl : "https://mean-resume.herokuapp.com"
 };
