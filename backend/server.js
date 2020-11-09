@@ -5,7 +5,6 @@ const debug = require("debug")("node-angular");
 const app  = require('./app');
 
 
-
 const normalizedPort = val => {
     var port = parseInt(val, 10);
 

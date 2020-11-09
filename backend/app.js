@@ -39,19 +39,19 @@ app.use("/", express.static(path.join(__dirname, "angular")))
 
 //set headers 
 
-app.use((req, res, next)=>{
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader(
-        "Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-    );
-    res.setHeader(
-        "Access-Control-Allow-Methods",
-        "GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS"
-    );
-    // for using next middleware
-    next();
-});
+// app.use((req, res, next)=>{
+//     res.setHeader("Access-Control-Allow-Origin", "*");
+//     res.setHeader(
+//         "Access-Control-Allow-Headers",
+//         "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+//     );
+//     res.setHeader(
+//         "Access-Control-Allow-Methods",
+//         "GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS"
+//     );
+//     // for using next middleware
+//     next();
+// });
 
 //board routes module 
 app.use("/resume/boards", boardRoutes);
