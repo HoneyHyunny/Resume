@@ -43,6 +43,21 @@
              placeholder="Write the description of this board">
     </div>
 
+
+    <div class="form-group" *ngIf="mode === 'create'">
+      <label for="boardCategory"> Choose Category </label>
+      <div class="input-group">
+        <select class="custom-select" id="boardCategory" (change)="getCategory($event)" aria-label="Example select with button addon">
+          <option value="" disabled>Choose Category</option>
+          <option *ngFor="let category of Category" [ngValue]="category">{{category}}</option>
+   
+        </select>
+   
+      </div>
+  
+    </div>
+
+
     <button type="submit"  class="btn btn-primary">Submit</button>
    
   </form>

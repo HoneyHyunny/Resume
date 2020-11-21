@@ -22,6 +22,7 @@ import { AuthentificationService } from '../../authentification/authentification
 export class ResumeComponent implements OnInit, OnDestroy {
 
   boards : Board[] = [];
+
   isUserAuthenticated = false;
   
   private boardsSubscription : Subscription;
@@ -39,16 +40,17 @@ export class ResumeComponent implements OnInit, OnDestroy {
 
     
     this.resumeService.getBoards();
-    console.log(this.boards);
-
-
+   
     this.userId = this.authentificationService.getUserId();
+
+
+ 
+    
 
     this.boardsSubscription = this.resumeService.getBoardUpdatedListener()
                       .subscribe((boards : Board[])=>{
-                        
-             this.boards = boards;
-
+                                  
+                      this.boards = boards;
     });
 
     this.isUserAuthenticated = this.authentificationService.getIsAuth();
@@ -66,6 +68,7 @@ export class ResumeComponent implements OnInit, OnDestroy {
     this.resumeService.deleteBoard(id);
 
   }
+
 
 
 

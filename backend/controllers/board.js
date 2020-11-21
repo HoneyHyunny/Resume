@@ -6,6 +6,7 @@ exports.createBoard = (req, res, next)=>{
         extraTitle : req.body.extraTitle,
         date : req.body.date,
         contents : req.body.contents,
+        boardCategory : req.body.boardCategory,
         createdBy : req.userData.userId
     });
     //디비에 성공적으로 저장했다면 그후 id값만 보냄.
@@ -32,6 +33,7 @@ exports.updateBoard = (req, res, next)=>{
         extraTitle : req.body.extraTitle,
         date : req.body.date,
         contents : req.body.contents,
+        boardCategory : req.body.boardCategory,
         createdBy : req.userData.userId
     });
     Board.updateOne( {_id : req.params.id, createdBy: req.userData.userId}, board)
@@ -51,8 +53,6 @@ exports.updateBoard = (req, res, next)=>{
 };
 
 exports.getBoards = (req, res, next)=>{
- 
-
     Board.find()
     .then(result=>{
         console.log(result);

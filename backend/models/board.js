@@ -8,6 +8,7 @@ const boardSchema = mongoose.Schema({
     extraTitle : {type: String, required : true},
     date : {type: String, required : true},
     contents : {type: String, required : true},
+    boardCategory : {type: String, required: true},
     createdBy : { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true}
 });
 

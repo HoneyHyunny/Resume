@@ -25,7 +25,8 @@ export class LoginComponent implements OnInit {
 
     this.userLoginForm = new FormGroup({
       email : new FormControl(''),
-      password : new FormControl('')
+      password : new FormControl(''),
+      secretcode : new FormControl('')
     });
   
     this.isLoading = false
@@ -39,8 +40,10 @@ export class LoginComponent implements OnInit {
     const user : User ={
     
       email : this.userLoginForm.value.email,
-      password : this.userLoginForm.value.password
+      password : this.userLoginForm.value.password,
+ 
     }
+    
 
     this.authentificationService.login(user);
   }

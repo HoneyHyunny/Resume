@@ -4,10 +4,10 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user.model';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
-// import { environment } from '../../environments/environment'
+import { environment } from '../../environments/environment'
 
 
-import {environment} from '../../environments/environment.prod'
+//import {environment} from '../../environments/environment.prod'
 
 
 
@@ -66,9 +66,7 @@ export class AuthentificationService {
     this.http.post(httpAddr + "/signup", user)
              .subscribe(response =>{
                console.log(response);
-             })
-
-
+             });
   }
 
   login(existUSer : User){

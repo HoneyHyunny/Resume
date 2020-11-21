@@ -16,9 +16,9 @@ import { Router } from '@angular/router';
 import { Board } from '../../models/board.model';
 
 //envrionment var
-// import { environment } from '../../../environments/environment'
+ import { environment } from '../../../environments/environment'
 
-import {environment} from '../../../environments/environment.prod'
+//import {environment} from '../../../environments/environment.prod'
 
 //common http addr
 const addr = environment.globalUrl + "/resume/boards";
@@ -58,7 +58,8 @@ export class ResumeService {
                     extraTitle : board.extraTitle,
                     date : board.date, 
                     contents : board.contents,
-                    createdBy : board.createdBy          
+                    createdBy : board.createdBy,
+                    boardCategory : board.boardCategory          
                  }
                });
              }))
@@ -106,7 +107,7 @@ export class ResumeService {
   //for edit mode, returning id string.
   getSingleBoard(id: string){
     //prevent duplicatation of original. 
-    return this.http.get<{_id: string, mainTitle: string, extraTitle: string, date: string, contents : string, createdBy: string}>
+    return this.http.get<{_id: string, mainTitle: string, extraTitle: string, date: string, contents : string, boardCategory : string,  createdBy: string}>
                         (addr + '/' + id)
   }
 

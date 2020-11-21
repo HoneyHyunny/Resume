@@ -1,245 +1,214 @@
 <!-- Jumbotron Part -->
 
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid text-center">
         <div class="container">
-          <div class="row">
 
-            <div class="col">
-
-            </div>
-
-            <div class="col-md-4">
               <figure class="figure">
                 <img src="../../../assets/crying_pepe.png" class="rounded-circle" alt="...">
               
               </figure>
-              <p class="lead">Hello, I am Hyunse Seo, and welcome to visit my resume web page!</p>
+              <h1 class="mat-headline">
+                Hello, I am Hyunse Seo.
+                <p></p>
+                Welcome to visit my Resume Page!
+              </h1>
+              <div class="div">
 
-              <i class="fa fa-github-square" style="font-size:60px;color:purple;"> </i>
-
-              <i class="fa fa-facebook-square" style="font-size:60px;color:blue;"></i>
-  
-              <i class="fa fa-twitter-square" style="font-size:60px;color:lightblue;"></i>
-  
-              <i class="fab fa-java" style="font-size:60px;color:lightblue;"></i>
-
-     
-       
-            </div>
-          
-            <div class="col">
-
-            </div>
-
-          
-            
-      
-          </div>
-         
-
+                <a class="fa fa-github-square my-1 p-2" href="https://github.com/HoneyHyunny"  style="font-size:60px;color:purple;"> </a>
+                <a class="fa fa-linkedin-square my-1 p-2" href="https://www.linkedin.com/in/%ED%98%84%EC%84%B8-%EC%84%9C-32b320200/"  style="font-size:60px;"></a>
+                <a class="fa fa-facebook-square my-1 p-2" href="https://www.facebook.com/hyunse.seo" style="font-size:60px;color:blue;"></a>
+    
+              </div>
         </div>
 </div>
 
 <!-- Jumbotron Part End -->
 
+<!-- edit form -->
+<div *ngIf="isUserAuthenticated">
+  <app-edit></app-edit>
 
-<div class="view">
+</div>
 
-    <app-edit></app-edit>
+<!-- edit form end -->
 
-
-    <!-- board1 -->
-
-      <div id="board"  class="my-4 p-4 bg-white rounded shadow-lg" >
-        
-        <!-- centered Title -->
-        <div class="mx-auto" style="width: 200px;">
-            <h1 id="list-item-1">Education</h1>
+<!-- education -->
+<div class="" id="EDUCATION">
+  <div class="mx-auto" style="width: 200px;">
+    <h1 class="mat-display-1">EDUCATION</h1>
+  </div>
+ 
+  <!-- ngfor 인식을위해 fake div로 묶었음. -->
+  <div class="div" *ngFor="let board of boards">
+    <div class="media text-muted pt-1 m-3" *ngIf="board.boardCategory == '1'">
+  
+    
+      <div class="media-body pb-3 large lh-125 border-bottom border-gray" >
+        <div class="row">
+            <!-- 상단 제목 및 기간 디바이딩 -->
+            <div class="col-sm">     
+                <h1 class="mat-display-1">{{board.mainTitle}} </h1>
+            </div>
+            <div class="col-sm">
+                
+            </div>
+            <div class="col-sm">
+            <h1>{{board.date}} </h1>
+            </div>
         </div>
+        <div class="row">
+          <div class="col">
+            <h1>    {{board.extraTitle}}  </h1>
+          </div>
+  
+        </div>
+       
+          <h2>
+            {{board.contents}} 
+          </h2>  
+      </div>
 
-        <h6 class="border-bottom border-gray pb-2 mb-0"> </h6>
+  </div>
 
-        <!-- ngfor 인식을위해 fake div로 묶었음. -->
+    <small class="d-block text-right mt-4 "  *ngIf="isUserAuthenticated && userId === board.createdBy" role="button">
+      
+        <a type="button" class="btn btn-outline-info" [routerLink]="['/edit', board.id]" >Edit</a>
+      <!-- button click event for deleting board. -->
+        <a type="button" class="btn btn-outline-danger m-2" (click)="onDelete(this.board.id)">Delete</a>
+
+
+    </small>
+  </div>
+
+ <!-- education end -->
+
+    <div id="WorkExperiences">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="mx-auto" style="width:300px;">
+          <h1 class="mat-display-1">Work Experiences</h1>
+        </div>
         <div class="div" *ngFor="let board of boards">
-          <div class="media text-muted pt-3" >
+          <div class="media text-muted pt-1 m-3" *ngIf="board.boardCategory == '2'">
         
           
-            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" >
+            <div class="media-body pb-3 large lh-125 border-bottom border-gray" >
               <div class="row">
                   <!-- 상단 제목 및 기간 디바이딩 -->
                   <div class="col-sm">     
-                      <h3 class="d-block text-gray-dark">{{board.mainTitle}} </h3>
+                      <h1 class="mat-display-1">{{board.mainTitle}} </h1>
                   </div>
                   <div class="col-sm">
                       
                   </div>
-                 <div class="col-sm">
-                      <h5 class="d-block text-gray-dark">{{board.date}}</h5>
-                 </div>
-              </div>  
-  
-              <h4>        
-                {{board.extraTitle}}
-              </h4>
-  
-              <h5>
-                {{board.contents}}
-              </h5>
-           </div>
-  
-          </div>
-  
-          <small class="d-block text-right mt-4 "  *ngIf="isUserAuthenticated && userId === board.createdBy" role="button">
-           
-              <a type="button" class="btn btn-outline-info" [routerLink]="['/edit', board.id]" >Edit</a>
-            <!-- button click event for deleting board. -->
-              <a type="button" class="btn btn-outline-danger m-2" (click)="onDelete(this.board.id)">Delete</a>
-     
-  
-            </small>
-        </div>
+                  <div class="col-sm">
+                  <h1>{{board.date}} </h1>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <h1>    {{board.extraTitle}}  </h1>
+                </div>
+        
+              </div>
+             
+                <h2>
+                  {{board.contents}} 
+                </h2>  
+            </div>
+ 
+    
+      </div>  
 
-       
+      <small class="d-block text-right mt-4 "  *ngIf="isUserAuthenticated && userId === board.createdBy" role="button">
+      
+        <a type="button" class="btn btn-outline-info" [routerLink]="['/edit', board.id]" >Edit</a>
+      <!-- button click event for deleting board. -->
+        <a type="button" class="btn btn-outline-danger m-2" (click)="onDelete(this.board.id)">Delete</a>
+      </small>
 
     </div>
-
-
-
-    <!-- board1 -->
- 
-    <div id="board" class="my-4 p-4 bg-white rounded shadow-lg">
-
-        <h1 id="list-item-2">Work Experiences</h1>
-
-        <h6 class="border-bottom border-gray pb-2 mb-0"> </h6>
-        <div class="media text-muted pt-3">
-
-          
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+</div>
+</div>
+  
+      <!-- board1 -->
+      <div class="mx-auto" style="width:200px;">
+        <h1 class="mat-display-1">Projects</h1>
+      </div>
+      <div class="div" *ngFor="let board of boards">
+        <div class="media text-muted pt-1 m-3" *ngIf="board.boardCategory == '3'">
+      
+        
+          <div class="media-body pb-3 large lh-125 border-bottom border-gray" >
             <div class="row">
                 <!-- 상단 제목 및 기간 디바이딩 -->
                 <div class="col-sm">     
-                    <h3 class="d-block text-gray-dark">Experience1 </h3>
+                    <h1 class="mat-display-1">{{board.mainTitle}} </h1>
                 </div>
                 <div class="col-sm">
                     
                 </div>
-               <div class="col-sm">
-                    <h3 class="d-block text-gray-dark">Dec 2018 - Mar 2019</h3>
-               </div>
+                <div class="col-sm">
+                <h1>{{board.date}} </h1>
+                </div>
             </div>
-     
-            
-            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-        </div>
-        
-
-
-        </div>
-
-
-
-
-        <div class="media text-muted pt-3">
-          <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#e83e8c"></rect><text x="50%" y="50%" fill="#e83e8c" dy=".3em">32x32</text></svg>
-          <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <strong class="d-block text-gray-dark">@username</strong>
-            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-          </p>
-        </div>
-        <div class="media text-muted pt-3">
-          <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#6f42c1"></rect><text x="50%" y="50%" fill="#6f42c1" dy=".3em">32x32</text></svg>
-          <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <strong class="d-block text-gray-dark">@username</strong>
-            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-          </p>
-        </div>
-        <small class="d-block text-right mt-3" role="button">
-          <a href="#">Edit</a>
+            <div class="row">
+              <div class="col">
+                <h1>    {{board.extraTitle}}  </h1>
+              </div>
+      
+            </div>
+           
+              <h2>
+                {{board.contents}} 
+              </h2>  
+          </div>
+    
+      </div>
+    
+        <small class="d-block text-right mt-4 "  *ngIf="isUserAuthenticated && userId === board.createdBy" role="button">
+          
+            <a type="button" class="btn btn-outline-info" [routerLink]="['/edit', board.id]" >Edit</a>
+          <!-- button click event for deleting board. -->
+            <a type="button" class="btn btn-outline-danger m-2" (click)="onDelete(this.board.id)">Delete</a>
+    
+    
         </small>
       </div>
 
-      <!-- board1 end -->
+  
+  
+        <h1 class="mat-display-1 text-center">Tool Experiences</h1>
+        <table class="table table-sm table-borderless">
+          <tbody>
+            <tr>
+              
+              <th scope="row"></th>
+              <td><img src="../../../assets/skills-prgramminglanguage-logo/angular.svg"  class="my-1 p-1" width="64" height="64" alt="Angular"></td>
+              <td><img src="../../../assets/skills-prgramminglanguage-logo/bootstrap.svg" class="my-1 p-1" width="64" height="64" alt="bootstrap"></td>
+              <td><img src="../../../assets/skills-prgramminglanguage-logo/c-sharp.svg" class="my-1 p-1" width="64" height="64" alt="c-sharp"></td>
+              <td><img src="../../../assets/skills-prgramminglanguage-logo/css.svg" class="my-1 p-1" width="64" height="64" alt="css"></td>
+              <td><img src="../../../assets/skills-prgramminglanguage-logo/github.svg" class="my-1 p-1" width="64" height="64" alt="github"></td>
+              <td><img src="../../../assets/skills-prgramminglanguage-logo/heroku.svg" class="my-1 p-1" width="64" height="64" alt="heroku"></td>
+              <td><img src="../../../assets/skills-prgramminglanguage-logo/html.svg" class="my-1 p-1" width="64" height="64" alt="html"></td>   
+             
+            </tr>
+            <tr>
+              <th scope="row"></th>
+            <td><img src="../../../assets/skills-prgramminglanguage-logo/mongodb.svg" class="my-1 p-1" width="64" height="64" alt="mongodb"></td>             
+              <td><img src="../../../assets/skills-prgramminglanguage-logo/nodejs.svg" class="my-1 p-1" width="64" height="64" alt="nodejs"></td>      
+              <td><img src="../../../assets/skills-prgramminglanguage-logo/npm.svg"  class="my-1 p-1"width="64" height="64" alt="npm"></td>     
+              <td> <img src="../../../assets/skills-prgramminglanguage-logo/python.svg" class="my-1 p-1" width="64" height="64" alt="python"></td>              
+              <td><img src="../../../assets/skills-prgramminglanguage-logo/typescript.svg" class="my-1 p-1" width="64" height="64" alt="typescript"></td>
+              <td><img src="../../../assets/skills-prgramminglanguage-logo/java.svg" class="my-1 p-1" width="64" height="64" alt="java"></td>
+              <td><img src="../../../assets/skills-prgramminglanguage-logo/javascript.svg" class="my-1 p-1" width="64" height="64" alt="javascript"></td>
+            </tr>
+          </tbody>
+        </table>
+      
+ 
 
+<!--  
 
-    <!-- board1 -->
-    <div id=board class="my-3 p-3 bg-white rounded shadow-sm">
-
-        <h1 id="list-item-3">Projects</h1>
-
-        <h6 class="border-bottom border-gray pb-2 mb-0"> </h6>
-        <div class="media text-muted pt-3">
-          <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
-          <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <strong class="d-block text-gray-dark">@username</strong>
-            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-          </p>
-        </div>
-        <div class="media text-muted pt-3">
-          <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#e83e8c"></rect><text x="50%" y="50%" fill="#e83e8c" dy=".3em">32x32</text></svg>
-          <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <strong class="d-block text-gray-dark">@username</strong>
-            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-          </p>
-        </div>
-        <div class="media text-muted pt-3">
-          <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#6f42c1"></rect><text x="50%" y="50%" fill="#6f42c1" dy=".3em">32x32</text></svg>
-          <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <strong class="d-block text-gray-dark">@username</strong>
-            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-          </p>
-        </div>
-        <small class="d-block text-right mt-3">
-          <a href="#">All updates</a>
-        </small>
-      </div>
-
-      <!-- board1 end -->
-
-   <!-- Board v2 start -->
-   
-   <div id="board" class="my-3 p-3 bg-white rounded shadow-sm">
-    <h1 id="list-item-4" class="border-bottom border-gray pb-2 mb-0">Skills</h1>
-    <div class="media text-muted pt-3">
-      <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
-      <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-        <div class="d-flex justify-content-between align-items-center w-100">
-          <strong class="text-gray-dark">Full Name</strong>
-          <a href="#">Follow</a>
-        </div>
-        <span class="d-block">@username</span>
-      </div>
-    </div>
-    <div class="media text-muted pt-3">
-      <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
-      <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-        <div class="d-flex justify-content-between align-items-center w-100">
-          <strong class="text-gray-dark">Full Name</strong>
-          <a href="#">Follow</a>
-        </div>
-        <span class="d-block">@username</span>
-      </div>
-    </div>
-    <div class="media text-muted pt-3">
-      <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
-      <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-        <div class="d-flex justify-content-between align-items-center w-100">
-          <strong class="text-gray-dark">Full Name</strong>
-          <a href="#">Follow</a>
-        </div>
-        <span class="d-block">@username</span>
-      </div>
-    </div>
-    <small class="d-block text-right mt-3">
-      <a href="#">All suggestions</a>
-    </small>
-  </div>
-  <!-- board2 end -->
-
-</div>
-
-
-
-
-
-
+<nav class="navbar navbar-expand-lg navbar-light navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Fixed bottom</a>
+</nav> -->

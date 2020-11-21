@@ -4,6 +4,7 @@ export interface Board{
         extraTitle : string,
         date : string, 
         contents : string,
+        boardCategory : string,
         createdBy : string        
 
 }

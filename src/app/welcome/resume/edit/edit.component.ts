@@ -9,7 +9,7 @@ import { Board } from '../../../models/board.model';
 import { ResumeService } from '../resume.service';
 
 //Reactive Forms 
-import {FormGroup, FormControl, Validators} from '@angular/forms'
+import {FormGroup, FormControl, Validators, FormArray} from '@angular/forms'
 
 //activateRouter for edit mode 
 import { ActivatedRoute, ParamMap } from '@angular/router'
@@ -25,18 +25,25 @@ export class EditComponent implements OnInit {
   //Reacitve Forms 
   boardEditForm : FormGroup; 
   // 나중에 서버에서 로그인 상태가 확인되면 이 기능이 활성화.
-  enableAdd: boolean = true;
+  enableAdd = false;
 
   //mode setting
-  private mode = 'create';
+  mode = 'create';
   //boardId for edit
   private boardId : string;
 
   //새로 수정하는 board, server로부터 값이 넘어오기때문에 일반 선언.
    board : Board 
 
+   
+   Category : string[] = ["1","2","3"];
+   selectedCategoryValue : string;
+   
    // bool status for spinner 
    isLoading = false;
+
+
+
 
   constructor(private resumeService : ResumeService, public route : ActivatedRoute) {
     
@@ -56,6 +63,7 @@ export class EditComponent implements OnInit {
       }),
       contents : new FormControl(null, {validators : [Validators.required, Validators.minLength(3)]
       }),
+      boardCategory : new FormControl(null)
 
     });
 
@@ -67,10 +75,12 @@ export class EditComponent implements OnInit {
         //zone 에 존재하는 boardId를 가지고옴.
         this.boardId = paramMap.get('boardId');
         this.isLoading = true;
+
         this.resumeService.getSingleBoard(this.boardId).subscribe(paramBoard =>{
           this.isLoading = false;
 
           console.log(paramBoard);
+          // this.selectedCategoryValue = paramBoard.boardCategory
           console.log("edit mode에 진입했습니다.")
           this.board = { 
             id : paramBoard._id, 
@@ -78,6 +88,7 @@ export class EditComponent implements OnInit {
             extraTitle : paramBoard.extraTitle,
             date : paramBoard.date,
             contents : paramBoard.contents,
+            boardCategory : paramBoard.boardCategory,
             createdBy : paramBoard.createdBy
           }
           
@@ -86,8 +97,9 @@ export class EditComponent implements OnInit {
             extraTitle : this.board.extraTitle,
             date : this.board.date,
             contents : this.board.contents,
+            boardCategory : this.board.boardCategory
           });
-          console.log( this.board);
+   
         });
       }
       else{
@@ -110,9 +122,12 @@ export class EditComponent implements OnInit {
       extraTitle : this.boardEditForm.value.extraTitle,
       date : this.boardEditForm.value.date,
       contents : this.boardEditForm.value.contents,
+      boardCategory : this.selectedCategoryValue,
       createdBy : null
     }
-  
+    console.log(this.board);
+    console.log(this.boardEditForm);
+
     this.resumeService.addBoard(this.board);
 
     } else {
@@ -123,6 +138,7 @@ export class EditComponent implements OnInit {
         extraTitle : this.boardEditForm.value.extraTitle,
         date : this.boardEditForm.value.date,
         contents : this.boardEditForm.value.contents,
+        boardCategory : this.boardEditForm.value.boardCategory,
         createdBy : null
       }
 
@@ -136,6 +152,9 @@ export class EditComponent implements OnInit {
   }
 
 
+  getCategory(event){
+    this.selectedCategoryValue = event.target.value;
+  }
 
 
 

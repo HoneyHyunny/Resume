@@ -1,18 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { AuthentificationService } from '../authentification.service'
+
+
+import {environment } from '../../../environments/environment';
+
+
+const envSecret = environment.loginsecret
+
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
+
+
 export class SignupComponent implements OnInit {
 
   isLoading = true;
 
   userSignupForm : FormGroup;
+
+  
 
   constructor(private authentificationService : AuthentificationService) { }
 
@@ -20,9 +31,18 @@ export class SignupComponent implements OnInit {
 
 
     this.userSignupForm = new FormGroup({
-      email : new FormControl(''),
-      username : new FormControl(''),
-      password : new FormControl('')
+      email : new FormControl('', [
+        Validators.required,
+        Validators.email
+      ]) ,
+      username : new FormControl('', [
+        Validators.required
+      ]),
+      password : new FormControl(''),
+      secretcode : new FormControl('', [
+        Validators.required,
+        
+      ])
     });
   
     this.isLoading = false
@@ -31,14 +51,24 @@ export class SignupComponent implements OnInit {
 
 
   onSubmit(){
+    
     console.log(this.userSignupForm.value);
     const user = {
       id : null,
       email : this.userSignupForm.value.email,
       username : this.userSignupForm.value.username,
-      password : this.userSignupForm.value.password,
+      password : this.userSignupForm.value.password
     }
-    this.authentificationService.signup(user);
+
+
+    if(this.userSignupForm.value.secretcode == envSecret){
+
+      this.authentificationService.signup(user);
+    }
+    else { 
+      console.error("error");
+    }
+
   }
 
 }

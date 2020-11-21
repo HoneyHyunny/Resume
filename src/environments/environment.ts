@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  localURL : "http://localhost:3000"
+  globalUrl : "http://localhost:3000",
+  loginsecret : "thisistest"
 };
 
 /*
