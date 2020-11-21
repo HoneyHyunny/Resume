@@ -16,9 +16,9 @@ import { Router } from '@angular/router';
 import { Board } from '../../models/board.model';
 
 //envrionment var
- import { environment } from '../../../environments/environment'
+//  import { environment } from '../../../environments/environment'
 
-//import {environment} from '../../../environments/environment.prod'
+import {environment} from '../../../environments/environment.prod'
 
 //common http addr
 const addr = environment.globalUrl + "/resume/boards";

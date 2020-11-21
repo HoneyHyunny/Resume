@@ -7,11 +7,20 @@ import { User } from '../../models/user.model';
 
 import { AuthentificationService } from '../authentification.service';
 
+// import { environment } from '../../../environments/environment';
+import {environment } from '../../../environments/environment.prod';
+
+const envSecret = environment.loginsecret
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
+
+
+
 export class LoginComponent implements OnInit {
 
   isLoading = true;
@@ -44,8 +53,15 @@ export class LoginComponent implements OnInit {
  
     }
     
+    if(this.userLoginForm.value.secretcode == envSecret){
 
+     
     this.authentificationService.login(user);
+    }
+    else { 
+      console.error("error");
+    }
+
   }
 
 

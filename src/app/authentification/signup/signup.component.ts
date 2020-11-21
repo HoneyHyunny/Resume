@@ -4,8 +4,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthentificationService } from '../authentification.service'
 
 
-import {environment } from '../../../environments/environment';
-
+//import {environment } from '../../../environments/environment';
+import {environment } from '../../../environments/environment.prod';
 
 const envSecret = environment.loginsecret
 
