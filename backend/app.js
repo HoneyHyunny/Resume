@@ -37,7 +37,7 @@ app.use("/", express.static(path.join(__dirname, "angular")))
 
 
 
-//set headers 
+// set headers 
 
 app.use((req, res, next)=>{
     res.setHeader("Access-Control-Allow-Origin", "*");
