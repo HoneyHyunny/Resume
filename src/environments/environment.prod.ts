@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  globalUrl : "https://hyunse-webresume.herokuapp.com",
+  globalUrl : "https://hyunse-resume.herokuapp.com",
   loginsecret : "thisistest"
 };
